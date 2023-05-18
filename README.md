@@ -2,7 +2,7 @@
 Go Daddy Dynamic DNS Docker Imag
 
 Docker image which uses GoDaddy API to update DNS record
-Based on - https://github.com/UnklAdM/update-godaddy-dnse
+Based on - https://github.com/UnklAdM/update-godaddy-dns
 
 To build
 docker build -t image:tag .
