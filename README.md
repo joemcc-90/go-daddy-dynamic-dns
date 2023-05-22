@@ -22,4 +22,4 @@ Example: docker run -d
 --env port=1
 --env weight=1
 --network bridge
-joem93874/go-daddy-dynamic-dns:latest
+joemcc/go-daddy-dynamic-dns:latest
