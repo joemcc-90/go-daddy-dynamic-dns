@@ -12,7 +12,18 @@ dnsIp=$(echo $result | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
 ret=$(curl -s GET "http://ipinfo.io/json")
 
 currentIp=$(echo $ret | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}\b")
- echo "currentIp:" $currentIp
+
+# Check if the value contains the IP address twice
+if [[ $currentIp =~ ([0-9]{1,3}\.){3}[0-9]{1,3}.*\1 ]]; then
+  echo "Duplicate IP address found in the value."
+  # Extract the IP address
+  ip_address="${BASH_REMATCH[0]}"
+
+  # Replace the duplicated IP address with a single occurrence
+  currentIp="${currentIp//$ip_address}"
+
+fi
+echo "currentIp:" $currentIp
 
 if [ "$dnsIp" != "$currentIp" ];
  then
