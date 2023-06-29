@@ -5,7 +5,8 @@ FROM ubuntu:latest
 WORKDIR /app
 
 # Install curl
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update
+RUN apt-get install -y curl
 
 # Copy the script file into the container
 COPY script.sh .
@@ -14,4 +15,4 @@ COPY script.sh .
 RUN chmod +x script.sh
 
 # Define the entry point command
-ENTRYPOINT ["./script.sh"]
+CMD ["./script.sh"]
