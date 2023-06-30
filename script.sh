@@ -16,20 +16,6 @@ currentIp=$(echo "$ret" | awk -F'"' '/ip/ {gsub(/[^0-9.]/,"",$4); print $4}' | t
 
 echo "currentIp: $currentIp"
 
-# Check if the value contains the IP address twice
-if [[ $currentIp =~ ([0-9]{1,3}\.){3}[0-9]{1,3}.*\1 ]]; then
-  echo "Duplicate IP address found in the value."
-
-  # Extract the duplicate IP address
-  duplicateIp="${BASH_REMATCH[0]}"
-
-  # Replace all occurrences of the duplicate IP address with a single occurrence
-  currentIp="${currentIp//$duplicateIp}"
-
-fi
-
-echo "currentIp: $currentIp"
-
 if [ "$dnsIp" != "$currentIp" ];
  then
         echo "IP's are not equal, updating record"
